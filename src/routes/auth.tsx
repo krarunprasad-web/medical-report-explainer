@@ -96,6 +96,25 @@ function AuthPage() {
           <span className="font-display text-xl">MediClear</span>
         </Link>
 
+        {sent ? (
+          <div className="rounded-3xl border border-border/70 bg-card p-8 text-center shadow-[0_20px_60px_-30px_oklch(0.4_0.06_195_/_0.5)]">
+            <h1 className="text-3xl">Check your inbox</h1>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              We've sent a confirmation link to <span className="text-foreground">{email}</span>.
+              Open it and you'll be signed in and ready to upload your first report.
+            </p>
+            <Button
+              variant="outline"
+              className="mt-6 w-full"
+              onClick={() => {
+                setSent(false);
+                setMode("signin");
+              }}
+            >
+              Back to sign in
+            </Button>
+          </div>
+        ) : (
         <div className="rounded-3xl border border-border/70 bg-card p-8 shadow-[0_20px_60px_-30px_oklch(0.4_0.06_195_/_0.5)]">
           <h1 className="text-3xl">
             {mode === "signin" ? "Welcome back" : "Let's get you started"}
