@@ -14,7 +14,136 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      report_messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          report_id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          report_id: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          report_id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "report_messages_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "reports"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      report_parameters: {
+        Row: {
+          created_at: string
+          explanation: string | null
+          id: string
+          name: string
+          plain_name: string | null
+          reference_range: string | null
+          report_id: string
+          sort_order: number
+          status: string
+          suggestion: string | null
+          unit: string | null
+          user_id: string
+          value: string | null
+        }
+        Insert: {
+          created_at?: string
+          explanation?: string | null
+          id?: string
+          name: string
+          plain_name?: string | null
+          reference_range?: string | null
+          report_id: string
+          sort_order?: number
+          status?: string
+          suggestion?: string | null
+          unit?: string | null
+          user_id: string
+          value?: string | null
+        }
+        Update: {
+          created_at?: string
+          explanation?: string | null
+          id?: string
+          name?: string
+          plain_name?: string | null
+          reference_range?: string | null
+          report_id?: string
+          sort_order?: number
+          status?: string
+          suggestion?: string | null
+          unit?: string | null
+          user_id?: string
+          value?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "report_parameters_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "reports"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reports: {
+        Row: {
+          created_at: string
+          error_message: string | null
+          file_path: string
+          id: string
+          mime_type: string
+          original_name: string
+          status: string
+          summary: string | null
+          title: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          error_message?: string | null
+          file_path: string
+          id?: string
+          mime_type: string
+          original_name: string
+          status?: string
+          summary?: string | null
+          title?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          error_message?: string | null
+          file_path?: string
+          id?: string
+          mime_type?: string
+          original_name?: string
+          status?: string
+          summary?: string | null
+          title?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
