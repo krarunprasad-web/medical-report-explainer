@@ -106,7 +106,7 @@ Answer only from these values and general health knowledge. Keep answers short â
         const result = streamText({
           model: provider.responses(MEDICLEAR_MODEL),
           system,
-          messages: convertToModelMessages(messages),
+          messages: await convertToModelMessages(messages),
           abortSignal: request.signal,
           providerOptions: {
             openai: {
