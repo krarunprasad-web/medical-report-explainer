@@ -47,12 +47,17 @@ function AuthPage() {
     setBusy(true);
     try {
       if (mode === "signup") {
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: window.location.origin },
+          options: { emailRedirectTo: `${window.location.origin}/reports` },
         });
         if (error) throw error;
+        if (!data.session) {
+          setSent(true);
+          setBusy(false);
+          return;
+        }
         toast.success("Welcome! Your account is ready.");
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
