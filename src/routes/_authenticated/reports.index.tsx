@@ -10,7 +10,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { Disclaimer } from "@/components/Disclaimer";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/_authenticated/reports")({
+export const Route = createFileRoute("/_authenticated/reports/")({
   head: () => ({
     meta: [
       { title: "My reports — MediClear" },
