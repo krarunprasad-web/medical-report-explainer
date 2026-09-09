@@ -84,7 +84,7 @@ export async function downloadReportPdf(report: PdfReport, parameters: PdfParame
   const sorted = [...parameters].sort((a, b) => (order[a.status] ?? 3) - (order[b.status] ?? 3));
 
   for (const p of sorted) {
-    const tone = TONE[p.status] ?? TONE.green;
+    const tone = TONE[p.status] ?? { label: "In range", rgb: [50, 135, 100] as [number, number, number] };
     ensureSpace(60);
     y += 6;
     doc.setDrawColor(225, 225, 225);
