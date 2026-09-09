@@ -2,7 +2,8 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, Loader2, RefreshCw, Trash2, AlertCircle } from "lucide-react";
+import { ArrowLeft, Download, Loader2, RefreshCw, Trash2, AlertCircle } from "lucide-react";
+import { downloadReportPdf } from "@/lib/report-pdf";
 import { toast } from "sonner";
 import { analyzeReport, deleteReport, getReport } from "@/lib/reports.functions";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -124,6 +125,20 @@ function ReportPage() {
             </p>
           </div>
           <div className="flex gap-2">
+            <Button
+              size="sm"
+              onClick={async () => {
+                try {
+                  await downloadReportPdf(report, parameters);
+                  toast.success("Saved as a PDF — check your downloads.");
+                } catch {
+                  toast.error("We couldn't create the PDF. Please try again.");
+                }
+              }}
+            >
+              <Download className="size-4" aria-hidden="true" />
+              Save as PDF
+            </Button>
             <Button variant="outline" size="sm" onClick={runAgain} disabled={retrying}>
               {retrying ? (
                 <Loader2 className="size-4 animate-spin" aria-hidden="true" />
